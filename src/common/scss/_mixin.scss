@@ -1,0 +1,116 @@
+// 垂直置中(在要垂直置中的元素外面包一個div增加這個class)
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+// 水平置中
+@mixin center-block {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+//絕對定位置中
+@mixin ab-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// 長寬設定
+@mixin size($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+//用在圖片代替字串
+@mixin hide-text {
+    display: block;
+    text-indent: 101%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+// 清除浮動是加在父元素的屬性
+@mixin clearfix() {
+    &::after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+}
+
+@mixin mul-font($n) {
+    font-size: $n*16px;
+}
+
+// 背景圖片fixed
+@mixin fixed-bg-img($url) {
+    background: url($url) fixed no-repeat center;
+    background-size: cover;
+}
+
+@mixin see-border {
+    border: 1px solid black;
+}
+
+// 特定字摺行做法
+// 在要折行的地方加上class並給他這個屬性
+@mixin wrap-text {
+    content: '';
+    display: block;
+}
+// 下面這些是讓遮罩位置是符合圖片大小
+// 但body要先預設position:relative否則會小跑板
+@mixin mask-show {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+}
+
+// 網路的mixin
+// generic transform
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+// rotate
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+
+// translate
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+
+// skew
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
